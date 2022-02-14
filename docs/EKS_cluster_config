@@ -1,0 +1,103 @@
+User name,Password,Access key ID,Secret access key,Console login link
+eksadmin,,AKIAUZLDXST6IU6IT4HB,dF1gxSf5RfmEcpR0ISiJPrAQDd48Ic+284Z5e5uL,https://329311032572.signin.aws.amazon.com/console
+
+
+
+
+
+
+
+
+
+## AWS account eksadmin programatic access with IAM role 
+
+#####create IAM user and role with policies to manage EC2 and EKS cluster . 
+
+create user : eksadmin administrator access 
+
+
+IAM  ROLE : eksclusteradmin
+Policies : 
+  ec2fullaccess 
+  cloudformationfullaccess
+  IAMfullaccess
+
+####launch bootstrap ec2 instance host for EKS deployment (EC2 Free tier) 
+allow ssh security group
+connect with keypair
+
+#### Prerequisite CLIs on EC2 
+
+  Install kubectl 
+  Install AWs cli 
+  Install eksctl
+  
+  
+### Configure access to AWS with aws cli 
+  aws configure
+  access key ID : 
+  secrect key : 
+  default region : us-east-1
+  
+  
+## create cluster 
+
+
+  
+----------------------------------------
+
+--- eksctl create cluster -f cluster.yaml
+
+cluster.yaml
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: basic-cluster
+  region: us-east-1
+
+nodeGroups:
+  - name: ng-1
+    instanceType: m5.large
+    desiredCapacity: 10
+  - name: ng-2
+    instanceType: m5.xlarge
+    desiredCapacity: 2
+
+
+
+
+
+  
+
+
+#### ISTIOS  on humphost 
+
+curl -L https://git.io/getLatestIstio | sh -
+cd istio-1.*
+
+yes | istioctl install --set profile=demo
+
+kubectl label namespace default istio-injection=enabled
+
+kubectl -n istio-system get svc
+
+kubectl -n istio-system get pods
+
+
+#### wordpress-mysql application yaml files 
+
+https://github.com/nadeemchoudhari/aws-eks-wordpress-mysql-istio
+
+cluster.yaml
+
+kustomization.yml
+
+mysql-configmap.yaml
+
+mysql-statefulsets.yaml
+
+wordpress-mysql.yaml
+
+wordpress.yaml
+
