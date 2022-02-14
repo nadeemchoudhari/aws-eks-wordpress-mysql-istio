@@ -126,4 +126,8 @@ kubectl run mysql-client-loop --image=mysql:5.7 -i -t --rm --restart=Never --\
 
 kubectl delete -k . 
 
+### delete AWS eks cluster 
+
+eksctl delete cluster -f cluster.yaml
+
 
