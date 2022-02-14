@@ -1,15 +1,6 @@
-User name,Password,Access key ID,Secret access key,Console login link
-eksadmin,,AKIAUZLDXST6IU6IT4HB,dF1gxSf5RfmEcpR0ISiJPrAQDd48Ic+284Z5e5uL,https://329311032572.signin.aws.amazon.com/console
 
 
-
-
-
-
-
-
-
-## AWS account eksadmin programatic access with IAM role 
+## create AWS user eksadmin programatic access with IAM role  and policy 
 
 #####create IAM user and role with policies to manage EC2 and EKS cluster . 
 
